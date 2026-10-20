@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>My Space</title>
+<style>
+:root{--bg:#f6f7f9;--surface:#fff;--text:#16181d;--muted:#6b7280;--line:#e5e7eb;--accent:#3a4de0;--on-accent:#fff;--r:14px;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101114;--surface:#181a1f;--text:#eceef2;--muted:#8d94a1;--line:#2a2d34;--accent:#8fa0ff;--on-accent:#101114}}
+:root[data-theme="dark"]{--bg:#101114;--surface:#181a1f;--text:#eceef2;--muted:#8d94a1;--line:#2a2d34;--accent:#8fa0ff;--on-accent:#101114}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 -apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue","Bangla Sangam MN","Kohinoor Bangla","Noto Sans Bengali","Hind Siliguri",system-ui,sans-serif;transition:background .25s,color .25s}
+.wrap{max-width:680px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+.bar{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font:600 20px -apple-system,"SF Pro Display","Bangla Sangam MN",system-ui,sans-serif;letter-spacing:-.01em}
+.row{display:flex;gap:8px;align-items:center}
+button,input,textarea{font-family:inherit}
+button{font:inherit;cursor:pointer;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--text);padding:8px 16px;transition:transform .15s,border-color .15s}
+button:hover{border-color:var(--accent)}button:active{transform:scale(.97)}
+button.pri{background:var(--accent);color:var(--on-accent);border-color:var(--accent);font-weight:500}
+button.ico{width:38px;height:38px;padding:0;display:grid;place-items:center}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.hero{padding:56px 0 32px;display:flex;gap:22px;align-items:center}
+.avatar{width:96px;height:96px;border-radius:50%;background:var(--line) center/cover;flex:none;display:grid;place-items:center;color:var(--muted);font-size:13px;cursor:pointer;border:1px solid var(--line)}
+h1{font:600 38px/1.2 -apple-system,"SF Pro Display","Bangla Sangam MN","Kohinoor Bangla",system-ui,sans-serif;margin:0 0 6px;letter-spacing:-.02em}
+.bio{color:var(--muted);margin:0;max-width:44ch}
+.links{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 28px}
+.links a{color:var(--text);text-decoration:none;border:1px solid var(--line);background:var(--surface);padding:6px 14px;border-radius:999px;font-size:14px}
+.links a:hover{border-color:var(--accent);color:var(--accent)}
+.links a,.links span{width:46px;height:46px;padding:0;display:grid;place-items:center;border-radius:999px;background:var(--surface);color:var(--text);border:1px solid var(--line)}.links svg{width:21px;height:21px}.links .off{opacity:.45;border-style:dashed}
+.tabs{display:flex;gap:22px;border-bottom:1px solid var(--line);margin-bottom:24px}
+.tab{background:none;border:0;border-bottom:2px solid transparent;border-radius:0;padding:10px 0;color:var(--muted)}
+.tab[aria-selected=true]{color:var(--text);border-color:var(--accent)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;margin-bottom:16px}
+.card img{width:100%;border-radius:10px;margin-top:12px;display:block}
+.card h3{font:600 22px/1.3 -apple-system,"SF Pro Display","Bangla Sangam MN",system-ui,sans-serif;margin:0 0 6px}
+.card p{margin:0;white-space:pre-wrap}
+.meta{color:var(--muted);font-size:13px;margin-top:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.grid img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px;display:block}
+input,textarea{font:inherit;width:100%;padding:11px 14px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--text);margin-bottom:10px}
+textarea{min-height:90px;resize:vertical}
+.empty{color:var(--muted);text-align:center;padding:36px 0}
+.sub{margin:36px 0;text-align:center}
+.sub h2{font:600 24px/1.3 -apple-system,"SF Pro Display","Bangla Sangam MN",system-ui,sans-serif;margin:0 0 4px}
+.sub form{display:flex;gap:8px;max-width:420px;margin:16px auto 0}.sub input{margin:0}
+footer{color:var(--muted);font-size:13px;text-align:center;padding:24px 0 40px;border-top:1px solid var(--line)}
+dialog{border:1px solid var(--line);border-radius:18px;background:var(--surface);color:var(--text);padding:26px;width:min(400px,92vw)}
+dialog::backdrop{background:rgba(0,0,0,.45)}
+dialog h2{font:600 24px -apple-system,"SF Pro Display","Bangla Sangam MN",system-ui,sans-serif;margin:0 0 14px}
+.sw{color:var(--muted);font-size:14px;margin-top:12px;text-align:center}.sw a{color:var(--accent);cursor:pointer}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--text);color:var(--bg);padding:10px 18px;border-radius:999px;opacity:0;transition:.25s;pointer-events:none;font-size:14px}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+@media(max-width:520px){.hero{flex-direction:column;align-items:flex-start;padding-top:36px}h1{font-size:32px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header><div class="wrap bar">
+  <span class="logo" id="logo">My Space</span>
+  <div class="row">
+    <button class="ico" id="theme" aria-label="Switch light or dark theme">◐</button>
+    <button id="authBtn">Sign up</button>
+  </div>
+</div></header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="avatar" id="avatar" title="Change photo" role="button" tabindex="0">Photo</div>
+    <div>
+      <h1 id="name">Your Name</h1>
+      <p class="bio" id="bio">Writer, photographer, curious person. Short bio goes here.</p>
+      <div class="row" style="margin-top:12px"><button id="editProfile" hidden>Edit profile</button></div>
+    </div>
+  </section>
+
+  <nav class="links" id="links" aria-label="My social links"></nav>
+  <div class="row" style="margin:-14px 0 24px"><button id="editLinks" hidden>Edit my links</button></div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-t="posts">Writing</button>
+    <button class="tab" role="tab" aria-selected="false" data-t="photos">Photos</button>
+  </div>
+
+  <section id="composer" class="card" hidden>
+    <input id="pTitle" placeholder="Title (optional)">
+    <textarea id="pBody" placeholder="What do you want to share?"></textarea>
+    <div class="row" style="justify-content:space-between">
+      <label><button type="button" id="pickImg">Add photo</button><input type="file" id="file" accept="image/*" hidden><span id="fname" class="meta" style="margin-left:8px"></span></label>
+      <button class="pri" id="publish">Publish</button>
+    </div>
+  </section>
+
+  <div id="feed"></div>
+
+</main>
+<footer>© <span id="yr"></span> · Made with Claude<br><a href="#" id="reset" hidden style="color:inherit">Reset site data</a></footer>
+
+<dialog id="authDlg">
+  <h2 id="authTitle">Create account</h2>
+  <div id="authFields">
+    <input id="aName" placeholder="Full name" autocomplete="name">
+    <input id="aEmail" type="email" placeholder="Email" autocomplete="email">
+    <input id="aPass" type="password" placeholder="Password (min 6 characters)" autocomplete="new-password">
+  </div>
+  <div class="row" style="justify-content:flex-end"><button id="authCancel">Cancel</button><button class="pri" id="authGo">Create account</button></div>
+  <p class="sw" id="authSw"></p>
+</dialog>
+
+<dialog id="profDlg"><h2>Edit profile</h2><input id="pfName" placeholder="Your name"><textarea id="pfBio" placeholder="Short bio"></textarea><div class="row" style="justify-content:flex-end"><button id="pfCancel">Cancel</button><button class="pri" id="pfSave">Save</button></div></dialog>
+<dialog id="linkDlg"><h2>My links</h2><div id="linkFields"></div><div class="row" style="justify-content:flex-end;margin-top:6px"><button id="lCancel">Cancel</button><button class="pri" id="lSave">Save</button></div></dialog>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const $=s=>document.querySelector(s);
+const store={
+  get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},
+  set(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){toast("Storage full. Try a smaller photo.");return false}}
+};
+let S={
+  profile:store.get("profile",{name:"Your Name",bio:"Writer, photographer, curious person. Short bio goes here.",avatar:""}),
+  posts:store.get("posts",[]),
+  social:store.get("social",{}),
+  user:store.get("user",null),
+  loggedIn:store.get("loggedIn",false),
+  tab:"posts", mode:"signup"
+};
+function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on");setTimeout(()=>t.classList.remove("on"),2200)}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+
+// theme
+const root=document.documentElement;
+const savedTheme=store.get("theme",null);
+if(savedTheme)root.dataset.theme=savedTheme;
+$("#theme").onclick=()=>{
+  const dark=root.dataset.theme?root.dataset.theme==="dark":matchMedia("(prefers-color-scheme:dark)").matches;
+  root.dataset.theme=dark?"light":"dark";store.set("theme",root.dataset.theme)
+};
+
+function render(){
+  const p=S.profile;
+  $("#name").textContent=p.name;$("#bio").textContent=p.bio;$("#logo").textContent=p.name==="Your Name"?"My Space":p.name;
+  const av=$("#avatar");av.style.backgroundImage=p.avatar?`url(${p.avatar})`:"";av.textContent=p.avatar?"":"Photo";
+  const own=S.loggedIn;
+  ["#editProfile","#composer"].forEach(s=>$(s).hidden=!own||(s==="#composer"&&S.tab!=="posts"&&S.tab!=="photos"));
+  $("#authBtn").textContent=own?"Log out":"Sign up";
+  renderSocial();
+  document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-selected",t.dataset.t===S.tab));
+  const f=$("#feed");
+  if(S.tab==="posts"){
+    f.innerHTML=S.posts.length?S.posts.map(x=>`<article class="card">${x.title?`<h3>${esc(x.title)}</h3>`:""}${x.body?`<p>${esc(x.body)}</p>`:""}${x.img?`<img src="${x.img}" alt="">`:""}<div class="meta">${new Date(x.date).toLocaleDateString(undefined,{day:"numeric",month:"short",year:"numeric"})}${own?` · <a href="#" data-del="${x.id}" style="color:inherit">Delete</a>`:""}</div></article>`).join(""):`<div class="empty">${own?"Write your first post above.":"No posts yet. Check back soon."}</div>`;
+  }else{
+    const imgs=S.posts.filter(x=>x.img);
+    f.innerHTML=imgs.length?`<div class="grid">${imgs.map(x=>`<img src="${x.img}" alt="${esc(x.title||"Photo")}">`).join("")}</div>`:`<div class="empty">${own?"Add a photo with a post and it shows up here.":"No photos yet."}</div>`;
+  }
+}
+document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{S.tab=t.dataset.t;render()});
+$("#feed").onclick=e=>{const id=e.target.dataset.del;if(id){e.preventDefault();S.posts=S.posts.filter(p=>String(p.id)!==id);store.set("posts",S.posts);render();toast("Post deleted")}};
+
+// image helper: resize to keep storage small
+function readImg(file,max=900){return new Promise(res=>{const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,max/Math.max(im.width,im.height));const c=document.createElement("canvas");c.width=im.width*k;c.height=im.height*k;c.getContext("2d").drawImage(im,0,0,c.width,c.height);res(c.toDataURL("image/jpeg",.8))};im.src=r.result};r.readAsDataURL(file)})}
+
+// composer
+let pending="";
+$("#pickImg").onclick=()=>$("#file").click();
+$("#file").onchange=async e=>{const f=e.target.files[0];if(!f)return;pending=await readImg(f);$("#fname").textContent=f.name};
+$("#publish").onclick=()=>{
+  const title=$("#pTitle").value.trim(),body=$("#pBody").value.trim();
+  if(!title&&!body&&!pending){toast("Add some text or a photo first");return}
+  const next=[{id:Date.now(),title,body,img:pending,date:Date.now()},...S.posts];
+  if(store.set("posts",next)){S.posts=next;$("#pTitle").value=$("#pBody").value="";pending="";$("#fname").textContent="";$("#file").value="";render();toast("Published")}
+};
+
+// profile
+$("#avatar").onclick=()=>{if(!S.loggedIn){toast("Log in to change your photo");return}const i=document.createElement("input");i.type="file";i.accept="image/*";i.onchange=async()=>{if(i.files[0]){S.profile.avatar=await readImg(i.files[0],300);store.set("profile",S.profile);render()}};i.click()};
+$("#editProfile").onclick=()=>{$("#pfName").value=S.profile.name;$("#pfBio").value=S.profile.bio;$("#profDlg").showModal()};
+$("#pfCancel").onclick=()=>$("#profDlg").close();
+$("#pfSave").onclick=()=>{S.profile.name=$("#pfName").value.trim()||"Your Name";S.profile.bio=$("#pfBio").value.trim();store.set("profile",S.profile);$("#profDlg").close();render();toast("Profile updated")};
+const IC={
+facebook:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.88v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>',
+instagram:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>',
+youtube:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>',
+tiktok:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.6 6.7a4.8 4.8 0 0 1-3.8-4.2V2h-3.4v13.7a2.9 2.9 0 1 1-2-2.8V9.4a6.3 6.3 0 1 0 5.4 6.3V8.9a8.2 8.2 0 0 0 4.8 1.5V7a4.8 4.8 0 0 1-1-.3z"/></svg>',
+whatsapp:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.1-1.3A10 10 0 1 0 12 2zm5.2 13.9c-.2.6-1.2 1.1-1.7 1.2-.4.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6-2.6-1.1-4.3-3.7-4.4-3.9-.1-.2-1.1-1.4-1.1-2.7s.7-1.9.9-2.2c.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.5 1.9 1 .9 1.9 1.2 2.2 1.3.3.1.4.1.6-.1l.8-1c.2-.2.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>'
+};
+const PL=[["facebook","Facebook"],["instagram","Instagram"],["youtube","YouTube"],["tiktok","TikTok"],["whatsapp","WhatsApp"]];
+function fixUrl(k,v){v=v.trim();if(!v)return"";if(k==="whatsapp"&&/^\+?[\d\s-]+$/.test(v))return"https://wa.me/"+v.replace(/\D/g,"");return /^https?:\/\//i.test(v)?v:"https://"+v}
+function renderSocial(){
+  const own=S.loggedIn;$("#editLinks").hidden=!own;$("#reset").hidden=!own;
+  $("#links").innerHTML=PL.map(([k,n])=>{const u=S.social[k];return u?`<a href="${esc(u)}" target="_blank" rel="noopener" aria-label="${n}" title="${n}">${IC[k]}</a>`:own?`<a href="#" data-add="1" class="off" aria-label="Add ${n} link" title="Add ${n} link">${IC[k]}</a>`:`<span class="off" title="${n}">${IC[k]}</span>`}).join("");
+}
+function openLinks(){
+  $("#linkFields").innerHTML=PL.map(([k,n])=>`<div class="meta" style="margin:4px 0">${n}${k==="whatsapp"?" (number with country code)":" link"}</div><input id="l_${k}" value="${esc(S.social[k]||"")}" placeholder="${k==="whatsapp"?"8801XXXXXXXXX":"https://..."}">`).join("");
+  $("#linkDlg").showModal()
+}
+$("#links").onclick=e=>{if(e.target.closest("[data-add]")){e.preventDefault();openLinks()}};
+$("#editLinks").onclick=openLinks;
+$("#lCancel").onclick=()=>$("#linkDlg").close();
+$("#lSave").onclick=()=>{PL.forEach(([k])=>{S.social[k]=fixUrl(k,$("#l_"+k).value)});store.set("social",S.social);$("#linkDlg").close();render();toast("Links saved")};
+
+// subscribe
+
+
+// auth
+const dlg=$("#authDlg");
+function authUI(){
+  const su=S.mode==="signup";
+  $("#authTitle").textContent=su?"Create account":"Log in";
+  $("#aName").hidden=!su;$("#authGo").textContent=su?"Create account":"Log in";
+  $("#authSw").innerHTML=su?'Already have an account? <a id="sw">Log in</a>':'New here? <a id="sw">Create account</a>';
+  $("#sw").onclick=()=>{S.mode=su?"login":"signup";authUI()}
+}
+$("#authBtn").onclick=()=>{
+  if(S.loggedIn){S.loggedIn=false;store.set("loggedIn",false);render();toast("Logged out");return}
+  S.mode=S.user?"login":"signup";authUI();dlg.showModal()
+};
+$("#authCancel").onclick=()=>dlg.close();
+$("#authGo").onclick=()=>{
+  const em=$("#aEmail").value.trim(),pw=$("#aPass").value,nm=$("#aName").value.trim();
+  if(!/^\S+@\S+\.\S+$/.test(em)){toast("Enter a valid email");return}
+  if(pw.length<6){toast("Password needs 6+ characters");return}
+  if(S.mode==="signup"){
+    if(!nm){toast("Enter your name");return}
+    S.user={name:nm,email:em,pw:btoa(unescape(encodeURIComponent(pw)))};store.set("user",S.user);
+    if(S.profile.name==="Your Name"){S.profile.name=nm;store.set("profile",S.profile)}
+  }else if(!S.user||S.user.email!==em||S.user.pw!==btoa(unescape(encodeURIComponent(pw)))){toast("Email or password is wrong");return}
+  S.loggedIn=true;store.set("loggedIn",true);dlg.close();render();toast("Welcome, "+S.user.name)
+};
+let rc=false;
+$("#reset").onclick=e=>{e.preventDefault();const a=e.target;if(!rc){rc=true;a.textContent="Tap again to erase everything";setTimeout(()=>{rc=false;a.textContent="Reset site data"},4000);return}["profile","posts","social","user","loggedIn"].forEach(k=>{try{localStorage.removeItem(k)}catch(_){}});location.reload()};
+$("#yr").textContent=new Date().getFullYear();
+render();
+</script>
+</body>
+</html>
